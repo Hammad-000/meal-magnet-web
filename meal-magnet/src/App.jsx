@@ -1,12 +1,13 @@
-
 import { useState } from "react";
-
 import CategoryFilter from "./components/CategoryFilter";
 import Products from "./components/Products";
-
 import { getVisibleProducts } from "../src/data/product-filter";
 import RatingFilter from "./components/RatingFilter";
 import { priceRange } from "./data/products";
+import SearchBox from "./components/SearchBox"; 
+import { AiOutlineMenu } from "react-icons/ai";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import PriceRange from "./components/PriceRange";
 
 const initPriceFilter = {
   min: priceRange.min,
@@ -14,18 +15,22 @@ const initPriceFilter = {
   isApplied: false,
 };
 
+ 
+
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRating, setSelectedRating] = useState("");
-
   const [initPriceRange, setInitPriceRange] = useState(initPriceFilter);
+  const [isFilterOpen, setIsFilterOpen] = useState(false); 
+  const [searchTerm, setSearchTerm] = useState("");
 
-  console.log(initPriceRange)
-  const filterProducts = getVisibleProducts(
+ const filterProducts = getVisibleProducts(
     selectedCategories,
     selectedRating,
-    initPriceRange
+    initPriceRange,
+    searchTerm
   );
+
 
   const onChangeCategoryHandler = (category, isChecked) => {
     if (isChecked) {
@@ -37,49 +42,66 @@ function App() {
     }
   };
 
-  console.log(selectedRating);
-
   const onChangeRatingHandler = (rating) => {
     setSelectedRating(rating);
   };
 
-  console.log(selectedRating);
+   const handleSearchChange = (term) => {
+    setSearchTerm(term);  
+  };
+
+   const handlePriceChange = (maxPrice) => {
+    setInitPriceRange((prevState) => ({
+      ...prevState,
+      max: maxPrice,
+      isApplied: true,  // Mark filter as applied when the user changes the price range
+    }));
+  };
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-6 grid grid-cols-6 col-span-8 gap-4">
+      
+      <div className="flex justify-between items-center mb-4">
+        <SearchBox onSearchChange={handleSearchChange} /> 
 
-      <div>
-        <nav>
-         <input className="border w-100" type="search" name="" id="" />
-        </nav>  </div>
-      <div className="grid  grid-cols-12 gap-3 my-2 mx-2">
-        <div className="col-span-2 space-y-4">
+   
+        <button
+          className="block lg:hidden p-2"
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+        >
+          {!isFilterOpen ? <AiOutlineMenu size={24} /> : <IoCloseCircleOutline size={24} />}
+        </button>
+      </div>
+
+      <div className="grid  grid-cols-5 col-span-6  gap-2">
+       
+        <div
+          className={`${
+            isFilterOpen ? "block" : "hidden"
+          } lg:block lg:col-span-1 border p-4 mt-5 bg-white rounded-md shadow-md h-150`}
+        >
           <CategoryFilter
             selectedCategories={selectedCategories}
             onChangeCategory={onChangeCategoryHandler}
           />
 
-          <input
-            type="range"
-            name=""
-            id=""
-            value={initPriceRange.max}
-            onChange={(e) => {
-              console.log(e.target.value)
-               setInitPriceRange({
-                 ...initPriceFilter,
-                 max: parseInt(e.target.value),
-                 isApplied: true,
-               });
-            }}
+         
+          <PriceRange
+            priceRange={priceRange}
+            initPriceRange={initPriceRange}
+             setInitPriceRange={handlePriceChange}
           />
 
+          {/* Rating Filter */}
           <RatingFilter
             onChangeRating={onChangeRatingHandler}
             selectedRating={selectedRating}
+           
           />
         </div>
-        <div className="col-span-10">
+
+        {/* Products Section */}
+        <div className="lg:col-span-4">
           <Products products={filterProducts} />
         </div>
       </div>

@@ -26,7 +26,7 @@ export const products = [
     title: "burger3",
     description: "Crispy zinger with crispy rolled into paratha",
     price: 300,
-    category: "Burger3",
+    category: "Burger",
     rating: 3,
   },
 
@@ -56,7 +56,7 @@ export const products = [
   title: "Shawarma2",
   description: "Crispy zinger with crispy rolled into paratha",
   price: 400,
-  category: "Pizza",
+  category: "Shawarma",
   rating: 5,
 },
 {
@@ -66,7 +66,7 @@ export const products = [
   description:
     "Enjoy the crispy chiken fillet in a soft bun with spicy mayo and our signature sauce",
   price: 500,
-  category: "Burger",
+  category: "Shawarma",
   rating: 4,
 },
 {
@@ -197,19 +197,8 @@ export const products = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ];
 export const priceRange = {
   min: 0,
-  max: 2000,
+  max: 3000,
 };
