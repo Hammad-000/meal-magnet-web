@@ -11,13 +11,13 @@ function SearchBox({ onSearchChange }) {
   };
 
   return (
-    <div className="mb-4 w-full ">
+    <div className="mb-4 w-ful">
       <input
         type="text"
         placeholder="Search for products"
         value={searchTerm}
         onChange={handleInputChange}
-        className="border px-4 py-2 w-6xl"
+        className="border px-4 py-2 w-6xl rounded"
       />
     </div>
   );
