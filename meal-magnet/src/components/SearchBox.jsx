@@ -1,4 +1,4 @@
-// SearchBox.js
+
 import { useState } from 'react';
 
 function SearchBox({ onSearchChange }) {
@@ -11,7 +11,7 @@ function SearchBox({ onSearchChange }) {
   };
 
   return (
-    <div className="mb-4 w-full">
+    <div className="mb-4 w-full ">
       <input
         type="text"
         placeholder="Search for products"

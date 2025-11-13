@@ -54,7 +54,7 @@ function App() {
     setInitPriceRange((prevState) => ({
       ...prevState,
       max: maxPrice,
-      isApplied: true,  // Mark filter as applied when the user changes the price range
+      isApplied: true,  
     }));
   };
 
@@ -92,7 +92,6 @@ function App() {
              setInitPriceRange={handlePriceChange}
           />
 
-          {/* Rating Filter */}
           <RatingFilter
             onChangeRating={onChangeRatingHandler}
             selectedRating={selectedRating}
@@ -100,7 +99,7 @@ function App() {
           />
         </div>
 
-        {/* Products Section */}
+        
         <div className="lg:col-span-4">
           <Products products={filterProducts} />
         </div>
