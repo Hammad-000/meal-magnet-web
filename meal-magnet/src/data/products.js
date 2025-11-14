@@ -15,7 +15,7 @@ export const products = [
     image: "../../public/images/burger2.webp",
     title: "Burger2",
     description:
-      "Aromatic arabian rice with 6 pacs of hot shots with KFC famous vietnamese sauce",
+      "Aromatic arabian burger with 6 pacs of hot shots with KFC famous vietnamese sauce",
     price: 200,
     category: "Burger",
     rating: 4,
@@ -45,7 +45,7 @@ export const products = [
     image: "../../public/images/Shawarma1.webp",
     title: "Shawarma1",
     description:
-      "Aromatic arabian rice with 6 pacs of hot shots with KFC famous vietnamese sauce",
+      "Aromatic arabian shawarma with 6 pacs of hot shots with KFC famous vietnamese sauce",
     price: 300,
     category: "Shawarma",
     rating: 1,
